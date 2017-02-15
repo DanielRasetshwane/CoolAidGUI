@@ -20,23 +20,30 @@ namespace MHA
         
         public const int DSL_MXCH = 32;              // maximum number of channels
         public const int NPTR = 64;
-        
-    
+
+        [StructLayout(LayoutKind.Sequential)]
         public unsafe struct CHA_DSL{
             public double attack { get; set; }              // attack time (ms)
             public double release { get; set; }             // release time (ms)
             public double maxdB { get; set; }               // maximum signal (dB SPL)
             public int ear { get; set; }                    // 0=left, 1=right
             public int nchannel { get; set; }               // number of channels
-            public double[] cross_freq { get; set; }        // cross frequencies (Hz)            
-            public double[] tkgain { get; set; }            // compression-start gain
-            public double[] cr { get; set; }                // compression ratio
-            public double[] tk { get; set; }                // compression-start kneepoint
-            public double[] bolt { get; set; }              // broadband output limiting threshold
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst=DSL_MXCH)]
+            public double[] cross_freq;// { get; set; }        // cross frequencies (Hz)            
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = DSL_MXCH)]
+            public double[] tkgain;// { get; set; }            // compression-start gain
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = DSL_MXCH)]
+            public double[] cr;// { get; set; }                // compression ratio
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = DSL_MXCH)]
+            public double[] tk;// { get; set; }                // compression-start kneepoint
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = DSL_MXCH)]
+            public double[] bolt;// { get; set; }              // broadband output limiting threshold
         }
-   
-        
-        public unsafe struct CHA_WDRC{
+
+
+        //[StructLayout(LayoutKind.Auto, Pack = 0)]
+        public unsafe struct CHA_WDRC
+        {
             public double attack { get; set; }               // attack time (ms)
             public double release { get; set; }              // release time (ms)
             public double fs { get; set; }                   // sampling rate (Hz)
@@ -52,17 +59,17 @@ namespace MHA
         #region Dll Imports
 
         [DllImport("chapro.dll", EntryPoint = "cha_firfb_prepare", CallingConvention = CallingConvention.StdCall)]
-        //public static extern int cha_firfb_prepare(void** cp, double* cf, int nc, double fs, int nw, int wt, int cs);
-        public static extern int cha_firfb_prepare(IntPtr[] cp, double* cf, int nc, double fs, int nw, int wt, int cs);
+        public static extern int cha_firfb_prepare(void* cp, double[] cf, int nc, double fs, int nw, int wt, int cs);
+        //public static extern int cha_firfb_prepare(IntPtr[] cp, double* cf, int nc, double fs, int nw, int wt, int cs);
 
         
-        [DllImport("chapro.dll", EntryPoint = "cha_agc_prepare", CallingConvention = CallingConvention.StdCall)]
-        //public static extern int cha_agc_prepare(void** cp, CHA_DSL dsl, CHA_WDRC gha);
-        public static extern int cha_agc_prepare(IntPtr[] cp, CHA_DSL dsl, CHA_WDRC gha);
+        [DllImport("chapro.dll")]//, EntryPoint = "cha_agc_prepare", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int cha_agc_prepare(void* cp, ref IntPtr dsl, ref CHA_WDRC gha);
+        //public static extern int cha_agc_prepare(void* cp, ref IntPtr dsl, ref IntPtr gha);
 
         
-        //[DllImport("chapro.dll", EntryPoint = "cha_data_gen", CallingConvention = CallingConvention.StdCall)]
-        //public static extern int cha_data_gen(void** cp, char* fn);
+        [DllImport("chapro.dll", EntryPoint = "cha_data_gen", CallingConvention = CallingConvention.StdCall)]
+        public static extern int cha_data_gen(void* cp, string fn);
         
 
         #endregion

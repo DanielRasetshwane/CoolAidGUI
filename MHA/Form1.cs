@@ -11,6 +11,7 @@ using csmatio.types;
 using csmatio.io;
 using System.IO;
 using System.Xml.Serialization;
+using System.Runtime.InteropServices;
 
 namespace MHA
 {
@@ -99,6 +100,15 @@ namespace MHA
                 {
                     MatFileReader r = new MatFileReader(fo.FileName);
                     Dictionary<string, MLArray> content = r.Content;
+                    if (content["DSL"] is MLStructure)
+                    {
+                        MLStructure matStr = (MLStructure)content["DSL"];
+                        //for (int i = 0; i < matStr.N; i++)
+                        //{
+                            //MLDouble attack = (MLDouble)matStr["attack\0",i];
+                            MLDouble attack = (MLDouble)matStr["", 0];
+                        //}
+                    }
 
                 }
                 catch (Exception ex)
@@ -264,8 +274,9 @@ namespace MHA
 
         private void PlotData()
         {
+                
             plotdata = new double[4][];
-            plotdata[0] = dsl.cross_freq;
+            plotdata[0] = CrossFreq_CenterFreq(dsl.cross_freq);
             plotdata[1] = dsl.tkgain;
             plotdata[2] = dsl.tk;
             plotdata[3] = dsl.bolt;
@@ -273,7 +284,26 @@ namespace MHA
             plotdataTrim = new double[4][];
             TrimData();
             DrawGraphs(plotdataTrim);  
-        }        
+        }
+
+        private double[] CrossFreq_CenterFreq(double[] cross_freq)
+        {
+            double[] temp = new double[chapro.DSL_MXCH];
+            double[] freq = new double[chapro.DSL_MXCH];
+
+            temp[0] = 0;
+            for (int i = 0; i < chapro.DSL_MXCH-1; i++)
+            {
+                temp[i+1] = cross_freq[i];
+            }
+            temp[dsl.nchannel] = 12000;
+
+            for (int i = 0; i < dsl.nchannel; i++)
+            {
+                freq[i] = (temp[i] + temp[i + 1])/2;
+            }
+            return freq;
+        }
 
         private void TrimData()
         {
@@ -364,10 +394,11 @@ namespace MHA
 
         private unsafe void UploadTeensy()
         {
-            void** cp;
+            //void** cp;
             //cp = {0};
+            
             IntPtr[] cpi;
-            cpi = new IntPtr[64];
+            cpi = new IntPtr[chapro.NPTR];
 
             //IntPtr cpi1;
             //cp = 
@@ -383,6 +414,7 @@ namespace MHA
             int wt = 0;
             int cs = 128;
             
+            
             chapro.CHA_WDRC gha = new chapro.CHA_WDRC();
             gha.attack = 1;
             gha.release = 50;
@@ -392,25 +424,38 @@ namespace MHA
             gha.tk = 105;
             gha.cr = 10;
             gha.bolt = 105;
+            
 
+            double[] cf = dsl.cross_freq;
 
-            firfb_prepare(cpi, dsl, nc, fs, nw, wt, cs);
-            chapro.cha_agc_prepare(cpi, dsl, gha);
-        }
-
-        private unsafe void firfb_prepare(IntPtr[] cp, chapro.CHA_DSL dsl, int nc, double fs, int nw, int wt, int cs)
-        {        
             try
             {
-                fixed (double* cf = &dsl.cross_freq[0])
+                fixed (void* cp = &cpi[0])
                 {
-                    chapro.cha_firfb_prepare(cp, cf, nc, fs, nw, wt, cs);                    
+                    // prepare FIRFB
+                    chapro.cha_firfb_prepare(cp, cf, nc, fs, nw, wt, cs);
+
+                    // Initialize unmanged memory to hold the struct
+                    IntPtr dsl_pnt = Marshal.AllocHGlobal(Marshal.SizeOf(dsl));
+
+                    // Copy dsl struct to unmanaged memory.
+                    Marshal.StructureToPtr(dsl, dsl_pnt, false);
+
+                    // prepare AGC
+                    chapro.cha_agc_prepare(cp, ref dsl_pnt, ref gha);
+
+                    // generate C code from prepared data
+                    chapro.cha_data_gen(cp, "cha_ff_data.h");
+
+                    // Free the unmanaged memory
+                    Marshal.FreeHGlobal(dsl_pnt);
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }             
+            }
+            toolStripStatusLabel1.Text = "Uploading to board... ";
         }
 
         private void Updatebutton_Click(object sender, EventArgs e)
