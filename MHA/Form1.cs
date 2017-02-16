@@ -394,19 +394,8 @@ namespace MHA
 
         private unsafe void UploadTeensy()
         {
-            //void** cp;
-            //cp = {0};
-            
             IntPtr[] cpi;
-            cpi = new IntPtr[chapro.NPTR];
-
-            //IntPtr cpi1;
-            //cp = 
-            //cpi[0] = IntPtr.Zero;
-            
-            //cpi = new cpi[64];
-            //cp[0] = (void)0;
-            
+            cpi = new IntPtr[chapro.NPTR];            
             
             int nc = dsl.nchannel;
             double fs = 24000;
