@@ -401,7 +401,7 @@ namespace MHA
             double fs = 24000;
             int nw = 128;
             int wt = 0;
-            int cs = 128;
+            int cs = 38400;
             
             
             chapro.CHA_WDRC gha = new chapro.CHA_WDRC();
@@ -430,10 +430,14 @@ namespace MHA
                     // Copy dsl struct to unmanaged memory.
                     Marshal.StructureToPtr(dsl, dsl_pnt, false);
 
+                    // prepare chunk buffers
+                    chapro.cha_allocate(cp, nc * cs * 2, sizeof(float), 3);
+
                     // prepare AGC
                     chapro.cha_agc_prepare(cp, ref dsl_pnt, ref gha);
 
                     // generate C code from prepared data
+                    
                     chapro.cha_data_gen(cp, "cha_ff_data.h");
 
                     // Free the unmanaged memory
@@ -444,6 +448,9 @@ namespace MHA
             {
                 MessageBox.Show(ex.Message);
             }
+            // generate C code from prepared data
+            //chapro.cha_data_gen(cpi, "cha_ff_data.h");
+
             toolStripStatusLabel1.Text = "Uploading to board... ";
         }
 

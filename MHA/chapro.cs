@@ -59,12 +59,18 @@ namespace MHA
 
         [DllImport("chapro.dll", EntryPoint = "cha_firfb_prepare", CallingConvention = CallingConvention.StdCall)]
         public static extern int cha_firfb_prepare(void* cp, double[] cf, int nc, double fs, int nw, int wt, int cs);
-        
-        [DllImport("chapro.dll")]//, EntryPoint = "cha_agc_prepare", CallingConvention = CallingConvention.Cdecl)]
+
+        [DllImport("chapro.dll", EntryPoint = "cha_allocate", CallingConvention = CallingConvention.StdCall)]
+        public static extern int cha_allocate(void* cp, int cnt, int siz, int idx);
+
+        [DllImport("chapro.dll", EntryPoint = "cha_agc_prepare", CallingConvention = CallingConvention.StdCall)]
         public static extern int cha_agc_prepare(void* cp, ref IntPtr dsl, ref CHA_WDRC gha);
         
         [DllImport("chapro.dll", EntryPoint = "cha_data_gen", CallingConvention = CallingConvention.StdCall)]
-        public static extern int cha_data_gen(void* cp, string fn);        
+        public static extern int cha_data_gen(void* cp, string fn);
+
+        [DllImport("chapro.dll", EntryPoint = "cha_data_gen", CallingConvention = CallingConvention.StdCall)]
+        public static extern int cha_data_gen(IntPtr[] cp, string fn);
 
         #endregion
     }
