@@ -274,6 +274,21 @@ namespace MHA
 
         private void PlotData()
         {
+            //DEBUG
+            int i = 3;
+            int j = 9;
+            string s;
+            //s = System.String.Format("{0} times {1} \n = {2}", i, j, (i * j));
+            //System.Console.Write(s);
+
+            //s = System.String.Format("p{0}[{1}]", i, j + " = { // _size");
+            //System.Console.Write(s);
+            System.Console.WriteLine("Storage size for int : " + sizeof(int));
+            System.Console.WriteLine("Storage size for long : " + sizeof(long));
+            System.Console.WriteLine("Storage size for short : " + sizeof(short));
+            System.Console.WriteLine("Storage size for double : " + sizeof(double));
+
+            // end DEBUG
                 
             plotdata = new double[4][];
             plotdata[0] = CrossFreq_CenterFreq(dsl.cross_freq);
@@ -401,7 +416,7 @@ namespace MHA
             double fs = 24000;
             int nw = 128;
             int wt = 0;
-            int cs = 38400;
+            int cs = 128;
             
             
             chapro.CHA_WDRC gha = new chapro.CHA_WDRC();
@@ -436,9 +451,8 @@ namespace MHA
                     // prepare AGC
                     chapro.cha_agc_prepare(cp, ref dsl_pnt, ref gha);
 
-                    // generate C code from prepared data
-                    
-                    chapro.cha_data_gen(cp, "cha_ff_data.h");
+                    // generate C code from prepared data                    
+                    //chapro.cha_data_gen(cp, "cha_ff_data.h");
 
                     // Free the unmanaged memory
                     Marshal.FreeHGlobal(dsl_pnt);
@@ -449,7 +463,7 @@ namespace MHA
                 MessageBox.Show(ex.Message);
             }
             // generate C code from prepared data
-            //chapro.cha_data_gen(cpi, "cha_ff_data.h");
+            chapro.cha_data_gen(cpi, "cha_ff_data.h");
 
             toolStripStatusLabel1.Text = "Uploading to board... ";
         }

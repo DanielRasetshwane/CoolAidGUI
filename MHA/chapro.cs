@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
+using System.IO;
 
 // Wrapper for chapro.dll
 
@@ -20,6 +21,11 @@ namespace MHA
         
         public const int DSL_MXCH = 32;              // maximum number of channels
         public const int NPTR = 64;
+        public const int _size = 0;
+        public const int _ivar = 1;
+        public const int _dvar = 2;
+        public const int _reserve = 3;
+
 
         [StructLayout(LayoutKind.Sequential)]
         public unsafe struct CHA_DSL{
@@ -66,17 +72,219 @@ namespace MHA
         [DllImport("chapro.dll", EntryPoint = "cha_agc_prepare", CallingConvention = CallingConvention.StdCall)]
         public static extern int cha_agc_prepare(void* cp, ref IntPtr dsl, ref CHA_WDRC gha);
         
-        [DllImport("chapro.dll", EntryPoint = "cha_data_gen", CallingConvention = CallingConvention.StdCall)]
-        public static extern int cha_data_gen(void* cp, string fn);
+        //[DllImport("chapro.dll", EntryPoint = "cha_data_gen", CallingConvention = CallingConvention.StdCall)]
+        //public static extern int cha_data_gen(void* cp, string fn);
 
-        [DllImport("chapro.dll", EntryPoint = "cha_data_gen", CallingConvention = CallingConvention.StdCall)]
-        public static extern int cha_data_gen(IntPtr[] cp, string fn);
+        //[DllImport("chapro.dll", EntryPoint = "cha_data_gen", CallingConvention = CallingConvention.StdCall)]
+        //public static extern int cha_data_gen(IntPtr[] cp, string fn);
 
         #endregion
+
+        public static unsafe int cha_data_gen(IntPtr[] cp, string fn)
+        {                
+            int ptsiz, arsiz, arlen, i, j; 
+            int *cpsiz;
+            ulong *ulptr;
+
+                //FILE *fp;
+
+            string[] head = {
+                "#ifndef CHA_DATA_H",
+                "#define CHA_DATA_H",
+                ""
+            };
+
+            string[] tail = {
+                "",
+                "#endif // CHA_DATA_H"
+            };
+            int hdsz = head.Length;// / sizeof(char *);
+            int tlsz = tail.Length;// / sizeof(char *);
+            int ptpl = 16;
+            int arpl = 8;
+            int ivpl = 8;
+            int dvpl = 5;
+            const int SIZEOFLONG = 4;
+
+            int[] CHA_IVAR = new int[cp.Length];
+            double[] CHA_DVAR = new double[cp.Length];
+            using (StreamWriter sw = new StreamWriter(fn))
+            {
+                //fp = fopen(fn, "wt");
+                //if (fp == NULL) {
+                //    return (1);
+                //}
+
+                cpsiz = (int *) cp[_size];
+                if (cpsiz == null) {
+                //    fclose(fp);
+                    return (2);
+                }
+
+                // print header
+                arsiz = 0;
+                for (i = 0; i < NPTR; i++)
+                {
+                    arsiz += cpsiz[i];
+                }
+                if (arsiz == 0) {
+                //    fclose(fp);
+                    return (3);
+                }
+
+                sw.Write("// cha_data.h - array size = " + arsiz + " bytes\n");
+                for (i = 0; i < hdsz; i++)
+                {
+                    sw.Write(head[i] + "\n");
+                }
+
+                // initialize ptr arrays
+                ptsiz = 0;
+                for (i = 0; i < NPTR; i++) {
+                    if (cp[i]!=IntPtr.Zero) ptsiz = i + 1;
+                }
+                for (i = 0; i < ptsiz; i++) {
+                    if (i == _size) {
+                        arlen = cpsiz[i] / SIZEOFLONG;
+                        arsiz = 0;
+                        ulptr = (ulong *) cp[i];
+                        if (ulptr!=null) {
+                            for (j = 0; j < arlen; j++) {
+                                System.Console.WriteLine(ulptr[j] + ":" + (ulptr[j] != 0).ToString() + ", j=" + j + ", arsiz=" + arsiz);
+                                if (ulptr[j]!=0) arsiz = j + 1;
+                            }
+                        }
+                        //fprintf(fp, "static CHA_DATA p%02d[%8d] = { // _size\n", i, arlen);
+                        sw.Write(System.String.Format("static CHA_DATA p{0,2}[{1,8}]", i.ToString("D2"), arlen.ToString("D")) + " = { // _size\n");
+                        for (j = 0; j < arsiz; j++) {
+                            if ((j % arpl) == 0) sw.Write("        "); //fprintf(fp, "        ");
+                            //fprintf(fp, "%10lu", ulptr[j]);
+                            sw.Write(System.String.Format("{0,10}", ulptr[j]));
+                            if (j < (arsiz - 1)) sw.Write(",");  //fprintf(fp, ",");
+                            if ((j % arpl) == (arpl - 1)) sw.Write("\n"); //fprintf(fp, "\n");                                
+                        }
+                        if ((j % arpl) != 0) sw.Write("\n"); //fprintf(fp, "\n");
+                        //fprintf(fp, "};\n");
+                        sw.Write("};\n");
+                        } else if (i == _ivar) {
+                        arlen = cpsiz[i] / sizeof(int);
+                        arsiz = 1;
+                        for (j = 1; j < arlen; j++) {
+                            if (CHA_IVAR[j]!=null) arsiz = j + 1;
+                        }
+                        //fprintf(fp, "static CHA_DATA p%02d[%8d] = { // _ivar\n", i, arlen);
+                        sw.Write(System.String.Format("static CHA_DATA p{0,2}[{1,8}]", i.ToString("D2"), arlen.ToString("D")) + " = { // _ivar\n");
+                        for (j = 0; j < arsiz; j++) {
+                            if ((j % ivpl) == 0) sw.Write("        "); //fprintf(fp, "        ");
+                            //fprintf(fp, "%10d", CHA_IVAR[j]);
+                            sw.Write(System.String.Format("{0,10}", CHA_IVAR[j].ToString("D")));
+                            if (j < (arsiz - 1)) sw.Write(","); //fprintf(fp, ",");
+                            if ((j % ivpl) == (ivpl - 1)) sw.Write("\n"); //fprintf(fp, "\n");
+                        }
+                        if ((j % ivpl) != 0) sw.Write("\n"); //fprintf(fp, "\n");
+                        sw.Write("};\n"); //fprintf(fp, "};\n");
+                    } else if (i == _dvar) {
+                        arlen = cpsiz[i] / sizeof(double);
+                        arsiz = 1;
+                        for (j = 1; j < arlen; j++) {
+                            if (CHA_DVAR[j]!=null) arsiz = j + 1;
+                        }
+                        sw.Write(System.String.Format("static double   p{0,2}[{1,8}]", i.ToString("D2"), arlen.ToString("D")) + " = { // _dvar\n");
+                        //fprintf(fp, "static double   p%02d[%8d] = { // _dvar\n", i, arlen);
+                        for (j = 0; j < arsiz; j++) {
+                            if ((j % dvpl) == 0) sw.Write("        "); //fprintf(fp, "        ");
+                            sw.Write(System.String.Format("{0,15:9}", CHA_DVAR[j].ToString("G"))); //fprintf(fp, "%15.9g", CHA_DVAR[j]);
+                            if (j < (arsiz - 1)) sw.Write(","); //fprintf(fp, ",");
+                            if ((j % dvpl) == (dvpl - 1)) sw.Write("\n"); //fprintf(fp, "\n");
+                        }
+                        if ((j % dvpl) != 0) sw.Write("\n"); //fprintf(fp, "\n");
+                        sw.Write("};\n"); //fprintf(fp, "};\n");
+                    } else if (cpsiz[i] == 0) {
+                        sw.Write(System.String.Format("// empty array ->     p%{0,2}\n", i.ToString("D2")));//fprintf(fp, "// empty array ->     p%02d\n", i);
+                    } else if ((cpsiz[i] % SIZEOFLONG) == 0) {
+                        arlen = cpsiz[i] / SIZEOFLONG;
+                        arsiz = 0;
+                        ulptr = (ulong *) cp[i];
+                        if (ulptr!=null) {
+                            for (j = 0; j < arlen; j++) {
+                                if (ulptr[j]!=0) arsiz = j + 1;
+                            }
+                        }
+                        if (arsiz < 2) {
+                            sw.Write(System.String.Format("static CHA_DATA p{0,2}[{1,8}] = {{2,10}};\n", i.ToString("D2"), arlen.ToString("D"), ulptr[0]));
+                            //fprintf(fp, "static CHA_DATA p%02d[%8d] = {%10lu};\n",i, arlen, ulptr[0]);
+                        } else {
+                            sw.Write(System.String.Format("static CHA_DATA p{0,2}[{1,8}]", i.ToString("D2"), arlen.ToString("D")) + " = {\n");
+                            //fprintf(fp, "static CHA_DATA p%02d[%8d] = {\n", i, arlen);
+                            for (j = 0; j < arsiz; j++) {
+                                if ((j % arpl) == 0) sw.Write("        "); //fprintf(fp, "        ");
+                                sw.Write(System.String.Format("0x{0,8}", ulptr[j].ToString("X8")));
+                                //fprintf(fp, "0x%08lX", ulptr[j]);
+                                if (j < (arsiz - 1)) sw.Write(","); //fprintf(fp, ",");
+                                if ((j % arpl) == (arpl - 1)) sw.Write("\n"); //fprintf(fp, "\n");
+                            }
+                            if ((j % arpl) != 0) sw.Write("\n"); //fprintf(fp, "\n");
+                            sw.Write("};\n"); //fprintf(fp, "};\n");
+                        }
+                    } else if ((cpsiz[i] % sizeof(short)) == 0) {
+                        arlen = cpsiz[i] / sizeof(short);
+                        sw.Write("// NOTE: Only zero data implemented unless size%%4==0.");
+                        //fprintf(fp, "// NOTE: Only zero data implemented unless size%%4==0.\n");
+                        sw.Write(System.String.Format("static unsigned short p{0,2}[(1,8)] = ;", i.ToString("D2"), arlen.ToString("D")) + "{0}\n");
+                        //fprintf(fp, "static unsigned short p%02d[%8d] = {0};\n", i, arlen);
+                    } else {
+                        arlen = cpsiz[i];
+                        sw.Write("// NOTEL: Only zero data implemented unless size%%4==0.");
+                        //fprintf(fp, "// NOTEL Only zero data implemented unless size%%4==0.\n");
+                        sw.Write(System.String.Format("static unsigned char  p{0,2}[{1,8}] = ;", i.ToString("D2"), arlen.ToString("D")) + "{0}\n");
+                        //fprintf(fp, "static unsigned char  p%02d[%8d] = {0};\n", i, arlen);
+                    }
+                }
+                sw.Write("\n"); //fprintf(fp, "\n");
+                // initialize ptr
+                if (ptsiz < 1) {
+                    sw.Write("static CHA_DATA *cha_data[NPTR] = {0};\n");
+                    //fprintf(fp, "static CHA_DATA *cha_data[NPTR] = {0};\n");
+                } else {
+                    sw.Write("static CHA_DATA *cha_data[NPTR] = {\n");
+                    //fprintf(fp, "static CHA_DATA *cha_data[NPTR] = {\n");
+                    sw.Write("    ");
+                    //fprintf(fp, "    ");
+                    for (i = 0; i < _reserve; i++) {
+                        sw.Write(System.String.Format("(CHA_DATA *)p{0,2},", i.ToString("D2")));
+                        //fprintf(fp, "(CHA_DATA *)p%02d,", i);
+                    }
+                    sw.Write("\n"); //fprintf(fp, "\n");
+                    int k=0;
+                    for (i = _reserve; i < ptsiz; i++) {
+                        j = i - _reserve;
+                        if ((j % ptpl) == 0) sw.Write("    "); //fprintf(fp, "    ");
+                        if (cpsiz[i] == 0) {
+                            sw.Write("NULL"); //fprintf(fp, "NULL");
+                        } else {
+                            sw.Write(System.String.Format(" p{0,2}", i.ToString("D2"))); //fprintf(fp, " p%02d", i);
+                        }
+                        if (i < (ptsiz - 1)) sw.Write(","); //fprintf(fp, ",");
+                        if ((j % ptpl) == (ptpl - 1)) sw.Write("\n"); //fprintf(fp, "\n");
+                        k = j;
+                    }
+                    j = k;
+                    if ((j % ptpl) != (ptpl - 1)) sw.Write("\n"); //fprintf(fp, "\n");
+                    sw.Write("};\n"); //fprintf(fp, "};\n");
+                }
+                // print trailer
+                for (i = 0; i < tlsz; i++) {
+                    sw.Write(tail[i] + "\n");
+                    //fprintf(fp, "%s\n", tail[i]);
+                }
+                //fclose(fp);
+                sw.Close();
+                
+            }
+            return (0);
+
+
+        }
     }
-
     
-
-
-
 }
