@@ -26,6 +26,26 @@ namespace MHA
         public const int _dvar = 2;
         public const int _reserve = 3;
 
+        // integer variable indices
+        public const int _cs = 0; 
+        public const int _nw = 1;
+        public const int _nc = 2;
+
+        // double variable indices
+        public const int _alfa     =0;
+        public const int _beta     =1;
+        public const int _fs       =2;
+        public const int _mxdb     =3;
+        public const int _tkgn     =4;
+        public const int _tk       =5;
+        public const int _cr       =6;
+        public const int _bolt     =7;
+        public const int _gcalfa   =8;
+        public const int _gcbeta   =9;
+
+        public static int[] CHA_IVAR = new int[NPTR];
+        public static double[] CHA_DVAR = new double[NPTR];
+
 
         [StructLayout(LayoutKind.Sequential)]
         public unsafe struct CHA_DSL{
@@ -72,8 +92,8 @@ namespace MHA
         [DllImport("chapro.dll", EntryPoint = "cha_agc_prepare", CallingConvention = CallingConvention.StdCall)]
         public static extern int cha_agc_prepare(void* cp, ref IntPtr dsl, ref CHA_WDRC gha);
         
-        //[DllImport("chapro.dll", EntryPoint = "cha_data_gen", CallingConvention = CallingConvention.StdCall)]
-        //public static extern int cha_data_gen(void* cp, string fn);
+        [DllImport("chapro.dll", EntryPoint = "cha_data_gen", CallingConvention = CallingConvention.StdCall)]
+        public static extern int cha_data_gen(void* cp, string fn);
 
         //[DllImport("chapro.dll", EntryPoint = "cha_data_gen", CallingConvention = CallingConvention.StdCall)]
         //public static extern int cha_data_gen(IntPtr[] cp, string fn);
@@ -84,7 +104,7 @@ namespace MHA
         {                
             int ptsiz, arsiz, arlen, i, j; 
             int *cpsiz;
-            ulong *ulptr;
+            uint *ulptr;
 
                 //FILE *fp;
 
@@ -106,18 +126,15 @@ namespace MHA
             int dvpl = 5;
             const int SIZEOFLONG = 4;
 
-            int[] CHA_IVAR = new int[cp.Length];
-            double[] CHA_DVAR = new double[cp.Length];
             using (StreamWriter sw = new StreamWriter(fn))
             {
-                //fp = fopen(fn, "wt");
-                //if (fp == NULL) {
-                //    return (1);
-                //}
+                if (sw.BaseStream == null) {
+                    return (1);
+                }
 
                 cpsiz = (int *) cp[_size];
                 if (cpsiz == null) {
-                //    fclose(fp);
+                    sw.Close();
                     return (2);
                 }
 
@@ -128,7 +145,7 @@ namespace MHA
                     arsiz += cpsiz[i];
                 }
                 if (arsiz == 0) {
-                //    fclose(fp);
+                    sw.Close();
                     return (3);
                 }
 
@@ -144,13 +161,13 @@ namespace MHA
                     if (cp[i]!=IntPtr.Zero) ptsiz = i + 1;
                 }
                 for (i = 0; i < ptsiz; i++) {
+                    System.Console.WriteLine("i=" + i + ", cpsiz[i]=" + cpsiz[i]);
                     if (i == _size) {
                         arlen = cpsiz[i] / SIZEOFLONG;
                         arsiz = 0;
-                        ulptr = (ulong *) cp[i];
+                        ulptr = (uint *) cp[i];
                         if (ulptr!=null) {
-                            for (j = 0; j < arlen; j++) {
-                                System.Console.WriteLine(ulptr[j] + ":" + (ulptr[j] != 0).ToString() + ", j=" + j + ", arsiz=" + arsiz);
+                            for (j = 0; j < arlen; j++) {                                
                                 if (ulptr[j]!=0) arsiz = j + 1;
                             }
                         }
@@ -170,7 +187,7 @@ namespace MHA
                         arlen = cpsiz[i] / sizeof(int);
                         arsiz = 1;
                         for (j = 1; j < arlen; j++) {
-                            if (CHA_IVAR[j]!=null) arsiz = j + 1;
+                            if (CHA_IVAR[j]!=0) arsiz = j + 1;
                         }
                         //fprintf(fp, "static CHA_DATA p%02d[%8d] = { // _ivar\n", i, arlen);
                         sw.Write(System.String.Format("static CHA_DATA p{0,2}[{1,8}]", i.ToString("D2"), arlen.ToString("D")) + " = { // _ivar\n");
@@ -187,7 +204,7 @@ namespace MHA
                         arlen = cpsiz[i] / sizeof(double);
                         arsiz = 1;
                         for (j = 1; j < arlen; j++) {
-                            if (CHA_DVAR[j]!=null) arsiz = j + 1;
+                            if (CHA_DVAR[j]!=0) arsiz = j + 1;
                         }
                         sw.Write(System.String.Format("static double   p{0,2}[{1,8}]", i.ToString("D2"), arlen.ToString("D")) + " = { // _dvar\n");
                         //fprintf(fp, "static double   p%02d[%8d] = { // _dvar\n", i, arlen);
@@ -204,14 +221,14 @@ namespace MHA
                     } else if ((cpsiz[i] % SIZEOFLONG) == 0) {
                         arlen = cpsiz[i] / SIZEOFLONG;
                         arsiz = 0;
-                        ulptr = (ulong *) cp[i];
+                        ulptr = (uint *) cp[i];
                         if (ulptr!=null) {
                             for (j = 0; j < arlen; j++) {
                                 if (ulptr[j]!=0) arsiz = j + 1;
                             }
                         }
                         if (arsiz < 2) {
-                            sw.Write(System.String.Format("static CHA_DATA p{0,2}[{1,8}] = {{2,10}};\n", i.ToString("D2"), arlen.ToString("D"), ulptr[0]));
+                            sw.Write(System.String.Format("static CHA_DATA p{0,2}[{1,8}] = ", i.ToString("D2"), arlen.ToString("D")) + "{" + System.String.Format("{0,10}", ulptr[0].ToString("D")) + "};\n");
                             //fprintf(fp, "static CHA_DATA p%02d[%8d] = {%10lu};\n",i, arlen, ulptr[0]);
                         } else {
                             sw.Write(System.String.Format("static CHA_DATA p{0,2}[{1,8}]", i.ToString("D2"), arlen.ToString("D")) + " = {\n");

@@ -285,6 +285,7 @@ namespace MHA
             //System.Console.Write(s);
             System.Console.WriteLine("Storage size for int : " + sizeof(int));
             System.Console.WriteLine("Storage size for long : " + sizeof(long));
+            System.Console.WriteLine("Storage size for ulong : " + sizeof(ulong));
             System.Console.WriteLine("Storage size for short : " + sizeof(short));
             System.Console.WriteLine("Storage size for double : " + sizeof(double));
 
@@ -410,7 +411,7 @@ namespace MHA
         private unsafe void UploadTeensy()
         {
             IntPtr[] cpi;
-            cpi = new IntPtr[chapro.NPTR];            
+            cpi = new IntPtr[chapro.NPTR];
             
             int nc = dsl.nchannel;
             double fs = 24000;
@@ -429,6 +430,19 @@ namespace MHA
             gha.cr = 10;
             gha.bolt = 105;
             
+            chapro.CHA_IVAR[chapro._cs] = cs;
+            chapro.CHA_IVAR[chapro._nw] = nw;
+            chapro.CHA_IVAR[chapro._nc] = nc;
+
+            //chapro.CHA_DVAR[chapro._alfa] = alfa;
+            //chapro.CHA_DVAR[chapro._beta] = beta;
+            chapro.CHA_DVAR[chapro._fs] = gha.fs;
+            chapro.CHA_DVAR[chapro._mxdb] = gha.maxdB;
+            chapro.CHA_DVAR[chapro._tkgn] = gha.tkgain;
+            chapro.CHA_DVAR[chapro._cr] = gha.cr;
+            chapro.CHA_DVAR[chapro._tk] = gha.tk;
+            chapro.CHA_DVAR[chapro._bolt] = gha.bolt;
+            
 
             double[] cf = dsl.cross_freq;
 
@@ -439,20 +453,20 @@ namespace MHA
                     // prepare FIRFB
                     chapro.cha_firfb_prepare(cp, cf, nc, fs, nw, wt, cs);
 
+                    // prepare chunk buffers
+                    chapro.cha_allocate(cp, nc * cs * 2, sizeof(float), 3);
+
                     // Initialize unmanged memory to hold the struct
                     IntPtr dsl_pnt = Marshal.AllocHGlobal(Marshal.SizeOf(dsl));
 
                     // Copy dsl struct to unmanaged memory.
-                    Marshal.StructureToPtr(dsl, dsl_pnt, false);
-
-                    // prepare chunk buffers
-                    chapro.cha_allocate(cp, nc * cs * 2, sizeof(float), 3);
+                    Marshal.StructureToPtr(dsl, dsl_pnt, true);
 
                     // prepare AGC
                     chapro.cha_agc_prepare(cp, ref dsl_pnt, ref gha);
 
                     // generate C code from prepared data                    
-                    //chapro.cha_data_gen(cp, "cha_ff_data.h");
+                    chapro.cha_data_gen(cp, "cha_ff_data_c.h");
 
                     // Free the unmanaged memory
                     Marshal.FreeHGlobal(dsl_pnt);
@@ -463,7 +477,7 @@ namespace MHA
                 MessageBox.Show(ex.Message);
             }
             // generate C code from prepared data
-            chapro.cha_data_gen(cpi, "cha_ff_data.h");
+            chapro.cha_data_gen(cpi, "cha_ff_data_cs.h");
 
             toolStripStatusLabel1.Text = "Uploading to board... ";
         }
