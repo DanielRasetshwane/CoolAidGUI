@@ -6,10 +6,10 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("MHA")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Credits:  CHAPRO (https://github.com/BoysTownorg/chapro), ZedGraph.dll (http://sourceforge.net/projects/zedgraph/),  BTNRH Contact Person: Daniel Rasetshwane (Daniel.Rasetshwane@boystown.org), Visit https://tympan.org for more information")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("BTNRH")]
-[assembly: AssemblyProduct("MHA")]
+[assembly: AssemblyProduct("Cool Aid User Interface")]
 [assembly: AssemblyCopyright("Copyright © BTNRH 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

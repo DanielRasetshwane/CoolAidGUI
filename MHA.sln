@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MHA", "MHA\MHA.csproj", "{8893E800-1533-4D42-B565-293155261DB1}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup1\Setup1.vdproj", "{A8B42707-E719-4A56-A5D4-6696D1914509}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,8 @@ Global
 		{8893E800-1533-4D42-B565-293155261DB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8893E800-1533-4D42-B565-293155261DB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8893E800-1533-4D42-B565-293155261DB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8B42707-E719-4A56-A5D4-6696D1914509}.Debug|Any CPU.ActiveCfg = Debug
+		{A8B42707-E719-4A56-A5D4-6696D1914509}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

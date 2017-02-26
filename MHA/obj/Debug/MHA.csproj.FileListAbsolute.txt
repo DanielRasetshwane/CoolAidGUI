@@ -15,3 +15,4 @@ C:\Users\rasdan\Documents\GitHub\CoolAidGUI\MHA\obj\Debug\MHA.Properties.Resourc
 C:\Users\rasdan\Documents\GitHub\CoolAidGUI\MHA\obj\Debug\MHA.csproj.GenerateResource.Cache
 C:\Users\rasdan\Documents\GitHub\CoolAidGUI\MHA\obj\Debug\MHA.exe
 C:\Users\rasdan\Documents\GitHub\CoolAidGUI\MHA\obj\Debug\MHA.pdb
+C:\Users\rasdan\Documents\GitHub\CoolAidGUI\MHA\obj\Debug\MHA.AboutBox.resources

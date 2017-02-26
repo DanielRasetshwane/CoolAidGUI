@@ -25,6 +25,8 @@ namespace MHA
         
 
         chapro.CHA_DSL dsl;
+        int cs = 128;
+
         string Filename = "";
 
         public Form1()
@@ -54,10 +56,11 @@ namespace MHA
                     dsl.cr[i] = double.Parse(dGV.Rows[i].Cells["CR"].Value.ToString());
                     dsl.bolt[i] = double.Parse(dGV.Rows[i].Cells["Bolt"].Value.ToString());
                 }
+                numUDchannels.Value = dsl.nchannel;
                 dsl.attack = double.Parse(txtAttack.Text);
                 dsl.release = double.Parse(txtRelease.Text);
                 dsl.maxdB = double.Parse(txtMaxdB.Text);
-                numUDchannels.Value = dsl.nchannel;
+                cs = int.Parse(txtChunkSize.Text);
                 toolStripStatusLabel1.Text = "Update complete";
             }
             else // update UI
@@ -70,10 +73,11 @@ namespace MHA
                     dGV.Rows[i].HeaderCell.Value = (i + 1).ToString();
                     dGV.EndEdit();
                 }
+                numUDchannels.Value = dsl.nchannel;
                 txtAttack.Text = dsl.attack.ToString();
                 txtRelease.Text = dsl.release.ToString();
                 txtMaxdB.Text = dsl.maxdB.ToString();
-                numUDchannels.Value = dsl.nchannel;
+                txtChunkSize.Text = cs.ToString();
             }
  
         }
@@ -103,11 +107,12 @@ namespace MHA
                     if (content["DSL"] is MLStructure)
                     {
                         MLStructure matStr = (MLStructure)content["DSL"];
-                        //for (int i = 0; i < matStr.N; i++)
-                        //{
+                        for (int i = 0; i < matStr.N; i++)
+                        {
                             //MLDouble attack = (MLDouble)matStr["attack\0",i];
-                            MLDouble attack = (MLDouble)matStr["", 0];
-                        //}
+                            MLDouble attack = (MLDouble)matStr["@", i];
+                            //MLDouble attack = (MLDouble)matStr["", 0];
+                        }
                     }
 
                 }
@@ -275,20 +280,11 @@ namespace MHA
         private void PlotData()
         {
             //DEBUG
-            int i = 3;
-            int j = 9;
-            string s;
-            //s = System.String.Format("{0} times {1} \n = {2}", i, j, (i * j));
-            //System.Console.Write(s);
-
-            //s = System.String.Format("p{0}[{1}]", i, j + " = { // _size");
-            //System.Console.Write(s);
             System.Console.WriteLine("Storage size for int : " + sizeof(int));
             System.Console.WriteLine("Storage size for long : " + sizeof(long));
             System.Console.WriteLine("Storage size for short : " + sizeof(short));
             System.Console.WriteLine("Storage size for double : " + sizeof(double));
             System.Console.WriteLine("Storage size for float : " + sizeof(float));
-
             // end DEBUG
                 
             plotdata = new double[4][];
@@ -405,7 +401,7 @@ namespace MHA
             float[] alfa_beta;
             int nw = 128;
             int wt = 0;
-            int cs = 128;
+            //int cs = 128;
             
             
             chapro.CHA_WDRC gha = new chapro.CHA_WDRC();
@@ -493,7 +489,7 @@ namespace MHA
 
 
             // generate C code from prepared data
-            chapro.cha_data_gen(cpi, "cha_ff_data_cs.h");
+            chapro.cha_data_gen(cpi, "cha_ff_data.h");
 
             System.Console.WriteLine("Inside UploadTeensy:");
 
@@ -573,5 +569,12 @@ namespace MHA
         {
             PlotData();
         }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutBox ab = new AboutBox();
+            ab.ShowDialog();
+        }
+
     }
 }
