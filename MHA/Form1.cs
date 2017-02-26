@@ -285,9 +285,9 @@ namespace MHA
             //System.Console.Write(s);
             System.Console.WriteLine("Storage size for int : " + sizeof(int));
             System.Console.WriteLine("Storage size for long : " + sizeof(long));
-            System.Console.WriteLine("Storage size for ulong : " + sizeof(ulong));
             System.Console.WriteLine("Storage size for short : " + sizeof(short));
             System.Console.WriteLine("Storage size for double : " + sizeof(double));
+            System.Console.WriteLine("Storage size for float : " + sizeof(float));
 
             // end DEBUG
                 
@@ -357,22 +357,6 @@ namespace MHA
             gp.AddCurve(strcurve, pointlist, col, symbol);
         }        
 
-        /*
-        public class dsl
-        {
-            public double attack { get; set; }           // attack time (ms)
-            public double release { get; set; }          // release time (ms)
-            public double maxdB { get; set; }            // maximum signal (dB SPL)
-            public int ear { get; set; }                 // 0=left, 1=right
-            public int nchannel { get; set; }            // number of channels
-            public double[] cross_freq { get; set; }     // cross frequencies (Hz)
-            public double[] tkgain { get; set; }         // compression-start gain
-            public double[] cr { get; set; }             // compression ratio
-            public double[] tk { get; set; }             // compression-start kneepoint
-            public double[] bolt { get; set; }           // broadband output limiting threshold
-        }
-        */
-
         private void SaveXML()
         {
             SaveFileDialog fo = new SaveFileDialog();
@@ -408,13 +392,17 @@ namespace MHA
             UpdateUI(false);
         }
 
-        private unsafe void UploadTeensy()
+        public unsafe void UploadTeensy()
         {
             IntPtr[] cpi;
             cpi = new IntPtr[chapro.NPTR];
             
             int nc = dsl.nchannel;
             double fs = 24000;
+            //double atk = dsl.attack;
+            //double rel = dsl.release;
+            double atk, rel;
+            float[] alfa_beta;
             int nw = 128;
             int wt = 0;
             int cs = 128;
@@ -429,20 +417,28 @@ namespace MHA
             gha.tk = 105;
             gha.cr = 10;
             gha.bolt = 105;
+
+            atk = gha.attack;
+            rel = gha.release;
+
+            alfa_beta = new float[2];
+            alfa_beta = chapro.time_const(atk,rel,fs);
             
             chapro.CHA_IVAR[chapro._cs] = cs;
             chapro.CHA_IVAR[chapro._nw] = nw;
             chapro.CHA_IVAR[chapro._nc] = nc;
 
-            //chapro.CHA_DVAR[chapro._alfa] = alfa;
-            //chapro.CHA_DVAR[chapro._beta] = beta;
+            chapro.CHA_DVAR[chapro._alfa] = alfa_beta[0];
+            chapro.CHA_DVAR[chapro._beta] = alfa_beta[1];
             chapro.CHA_DVAR[chapro._fs] = gha.fs;
             chapro.CHA_DVAR[chapro._mxdb] = gha.maxdB;
             chapro.CHA_DVAR[chapro._tkgn] = gha.tkgain;
             chapro.CHA_DVAR[chapro._cr] = gha.cr;
             chapro.CHA_DVAR[chapro._tk] = gha.tk;
             chapro.CHA_DVAR[chapro._bolt] = gha.bolt;
-            
+            chapro.CHA_DVAR[chapro._gcalfa] = alfa_beta[0];
+            chapro.CHA_DVAR[chapro._gcbeta] = alfa_beta[1];
+
 
             double[] cf = dsl.cross_freq;
 
@@ -457,29 +453,58 @@ namespace MHA
                     chapro.cha_allocate(cp, nc * cs * 2, sizeof(float), 3);
 
                     // Initialize unmanged memory to hold the struct
-                    IntPtr dsl_pnt = Marshal.AllocHGlobal(Marshal.SizeOf(dsl));
+                    //IntPtr dsl_pnt = Marshal.AllocHGlobal(Marshal.SizeOf(dsl));
 
                     // Copy dsl struct to unmanaged memory.
-                    Marshal.StructureToPtr(dsl, dsl_pnt, true);
+                    //Marshal.StructureToPtr(dsl, dsl_pnt, true);
 
                     // prepare AGC
-                    chapro.cha_agc_prepare(cp, ref dsl_pnt, ref gha);
+                    //chapro.cha_agc_prepare(cp, ref dsl_pnt, ref gha);
+
+                    //chapro.cha_allocate(cp, nc, sizeof(float), 8);
+                    //chapro.cha_allocate(cp, nc, sizeof(float), 9);
+                    //chapro.cha_allocate(cp, nc, sizeof(float), 10);
+                    //chapro.cha_allocate(cp, nc, sizeof(float), 11);
+                    //chapro.cha_allocate(cp, nc, sizeof(float), 12);
 
                     // generate C code from prepared data                    
-                    chapro.cha_data_gen(cp, "cha_ff_data_c.h");
+                    //chapro.cha_data_gen(cp, "cha_ff_data_c.h");
 
                     // Free the unmanaged memory
-                    Marshal.FreeHGlobal(dsl_pnt);
+                    //Marshal.FreeHGlobal(dsl_pnt);
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+
+            // Initialize unmanged memory to hold the struct
+            //IntPtr dsl_pnt = Marshal.AllocHGlobal(Marshal.SizeOf(dsl));
+
+            // Copy dsl struct to unmanaged memory.
+            //Marshal.StructureToPtr(dsl, dsl_pnt, true);
+
+            // prepare AGC
+            chapro.cha_agc_prepare(cpi, dsl, gha);
+            
+            // Free the unmanaged memory
+            //Marshal.FreeHGlobal(dsl_pnt);
+
+
             // generate C code from prepared data
             chapro.cha_data_gen(cpi, "cha_ff_data_cs.h");
 
-            toolStripStatusLabel1.Text = "Uploading to board... ";
+            System.Console.WriteLine("Inside UploadTeensy:");
+
+            int* cpsiz;
+            for (int i = 0; i < 15; i++)
+            {
+                cpsiz = (int*)cpi[0]; 
+                System.Console.WriteLine("i = " + i + " : size = " + cpsiz[i]);
+            }
+
+                toolStripStatusLabel1.Text = "Uploading to board... ";
         }
 
         private void Updatebutton_Click(object sender, EventArgs e)
@@ -504,6 +529,19 @@ namespace MHA
         private void Uploadbutton_Click(object sender, EventArgs e)
         {
             UploadTeensy();
+
+            //chapro.CHA_WDRC gha = new chapro.CHA_WDRC();
+            //gha.attack = 1;
+            //gha.release = 50;
+            //gha.fs = 24000;
+            //gha.maxdB = 119;
+            //gha.tkgain = 0;
+            //gha.tk = 105;
+            //gha.cr = 10;
+            //gha.bolt = 105;
+
+            //chapro.UploadBoard(dsl,gha);
+
         }
 
         private void updateToolStripMenuItem_Click(object sender, EventArgs e)

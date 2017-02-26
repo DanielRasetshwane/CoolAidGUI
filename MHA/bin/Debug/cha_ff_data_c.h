@@ -1,10 +1,10 @@
-// cha_data.h - array size = 27672 bytes
+// cha_data.h - array size = 27832 bytes
 #ifndef CHA_DATA_H
 #define CHA_DATA_H
 
 static CHA_DATA p00[      64] = { // _size
                256,        64,       128,      8192,      8256,      1032,      1032,      8192,
-                 0,         0,         0,         0,         0,       512,         8
+                32,        32,        32,        32,        32,       512,         8
 };
 static CHA_DATA p01[      16] = { // _ivar
                128,       128,         8
@@ -277,17 +277,17 @@ static CHA_DATA p04[    2064] = {
 static CHA_DATA p05[     258] = {         0};
 static CHA_DATA p06[     258] = {         0};
 static CHA_DATA p07[    2048] = {         0};
-// empty array ->     p08
-// empty array ->     p09
-// empty array ->     p10
-// empty array ->     p11
-// empty array ->     p12
+static CHA_DATA p08[       8] = {         0};
+static CHA_DATA p09[       8] = {         0};
+static CHA_DATA p10[       8] = {         0};
+static CHA_DATA p11[       8] = {         0};
+static CHA_DATA p12[       8] = {         0};
 static CHA_DATA p13[     128] = {         0};
 static CHA_DATA p14[       2] = {         0};
 
 static CHA_DATA *cha_data[NPTR] = {
     (CHA_DATA *)p00,(CHA_DATA *)p01,(CHA_DATA *)p02,
-     p03, p04, p05, p06, p07,NULL,NULL,NULL,NULL,NULL, p13, p14
+     p03, p04, p05, p06, p07, p08, p09, p10, p11, p12, p13, p14
 };
 
 #endif // CHA_DATA_H
