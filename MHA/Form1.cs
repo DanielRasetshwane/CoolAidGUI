@@ -139,6 +139,7 @@ namespace MHA
             dsl.maxdB = 119;
             dsl.ear = 0;
             dsl.nchannel = 8;
+            
             dsl.cross_freq = new double[chapro.DSL_MXCH];
             dsl.cross_freq[0] = 317.1666;
             dsl.cross_freq[1] = 502.9734; 
@@ -175,7 +176,7 @@ namespace MHA
             dsl.tk[3] = 26.7;
             dsl.tk[4] = 29.8;
             dsl.tk[5] = 33.6;
-            dsl.tk[6] = 34.7;
+            dsl.tk[6] = 34.3;
             dsl.tk[7] = 32.7;
 
             dsl.bolt = new double[chapro.DSL_MXCH];
@@ -420,10 +421,11 @@ namespace MHA
             alfa_beta = new float[2];
             alfa_beta = chapro.time_const(atk,rel,fs);
             
+            
             chapro.CHA_IVAR[chapro._cs] = cs;
             chapro.CHA_IVAR[chapro._nw] = nw;
             chapro.CHA_IVAR[chapro._nc] = nc;
-
+            /*
             chapro.CHA_DVAR[chapro._alfa] = alfa_beta[0];
             chapro.CHA_DVAR[chapro._beta] = alfa_beta[1];
             chapro.CHA_DVAR[chapro._fs] = gha.fs;
@@ -434,7 +436,7 @@ namespace MHA
             chapro.CHA_DVAR[chapro._bolt] = gha.bolt;
             chapro.CHA_DVAR[chapro._gcalfa] = alfa_beta[0];
             chapro.CHA_DVAR[chapro._gcbeta] = alfa_beta[1];
-
+            */
 
             double[] cf = dsl.cross_freq;
 

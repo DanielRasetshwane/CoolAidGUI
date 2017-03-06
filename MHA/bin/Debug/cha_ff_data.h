@@ -1,22 +1,19 @@
-// cha_data.h - array size = 27672 bytes
+// cha_data.h - array size = 27832 bytes
 #ifndef CHA_DATA_H
 #define CHA_DATA_H
 
 static CHA_DATA p00[      64] = { // _size
                256,        64,       128,      8192,      8256,      1032,      1032,      8192,
-                 0,         0,         0,         0,         0,       512,         8
+                32,        32,        32,        32,        32,       512,         8
 };
 static CHA_DATA p01[      16] = { // _ivar
-                 0,         0,         0,         0,         0,         0,         0,         0,
-                 0,         0,         0,         0,         0,         0,         0,         0
+               128,       128,         8
 };
 static double   p02[      16] = { // _dvar
-                      0,              0,              0,              0,              0,
-                      0,              0,              0,              0,              0,
-                      0,              0,              0,              0,              0,
-                      0
+            0.980191946,    0.998517215,          24000,            119,              0,
+                    105,             10,            105,    0.980191946,    0.998517215
 };
-static CHA_DATA p03[    2048] = {2,10};
+static CHA_DATA p03[    2048] = {         0};
 static CHA_DATA p04[    2064] = {
         0x3F70FEBF,0x00000000,0xB9A3D9C2,0xBF5B60FC,0xBF22E19D,0x32134388,0xB9A3D4C2,0x3EBB4560,
         0x3E148D44,0xB2326792,0xB9A3DB40,0xBCE7D6AE,0x3B142CDE,0x31C73848,0xB9A3D38D,0xB9971B22,
@@ -277,20 +274,28 @@ static CHA_DATA p04[    2064] = {
         0xB9A3DBC8,0xBF7FFD3A,0xBF7FEFF8,0x327CBFBE,0xB9A3D7C8,0x3F8000FC,0x3F8007F9,0xB21F5D56,
         0xB9A3D95F,0xBF7FFED1,0xBF7FF019,0xB229D640,0xB9A3D931,0x3F800032,0x3F8007F2
 };
-static CHA_DATA p05[     258] = {2,10};
-static CHA_DATA p06[     258] = {2,10};
-static CHA_DATA p07[    2048] = {2,10};
-// empty array ->     p%08
-// empty array ->     p%09
-// empty array ->     p%10
-// empty array ->     p%11
-// empty array ->     p%12
-static CHA_DATA p13[     128] = {2,10};
-static CHA_DATA p14[       2] = {2,10};
+static CHA_DATA p05[     258] = {         0};
+static CHA_DATA p06[     258] = {         0};
+static CHA_DATA p07[    2048] = {         0};
+static CHA_DATA p08[       8] = {
+        0x4200CCCD,0x41D40000,0x41D5999A,0x41D5999A,0x41EE6666,0x42066666,0x42093333,0x4202CCCD
+};
+static CHA_DATA p09[       8] = {
+        0x3F333333,0x3F666666,0x3F800000,0x3F8CCCCD,0x3F99999A,0x3FB33333,0x3FCCCCCD,0x3FD9999A
+};
+static CHA_DATA p10[       8] = {
+        0xC15981D8,0xC184BA2A,0xC0730F28,0x40D3C361,0x4134E148,0x41BDBF14,0x420F6F35,0x42158DD3
+};
+static CHA_DATA p11[       8] = {
+        0x42825852,0x428F37DC,0x42ADCDED,0x42B9AAA6,0x42C46666,0x42CE999A,0x42CBCCCD,0x42C7999A
+};
+static CHA_DATA p12[       8] = {         0};
+static CHA_DATA p13[     128] = {         0};
+static CHA_DATA p14[       2] = {         0};
 
 static CHA_DATA *cha_data[NPTR] = {
     (CHA_DATA *)p00,(CHA_DATA *)p01,(CHA_DATA *)p02,
-     p03, p04, p05, p06, p07,NULL,NULL,NULL,NULL,NULL, p13, p14
+     p03, p04, p05, p06, p07, p08, p09, p10, p11, p12, p13, p14
 };
 
 #endif // CHA_DATA_H
