@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MHA", "MHA\MHA.csproj", "{8893E800-1533-4D42-B565-293155261DB1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GHA_Controller", "MHA\GHA_Controller.csproj", "{8893E800-1533-4D42-B565-293155261DB1}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{726EE13B-F40B-4D29-B163-A760DA8F673F}"
 EndProject

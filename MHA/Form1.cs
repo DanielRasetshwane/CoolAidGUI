@@ -491,9 +491,14 @@ namespace MHA
 
 
             // generate C code from prepared data
-            chapro.cha_data_gen(cpi, "cha_ff_data.h");
+            string fn = "cha_ff_data128.h";
+            chapro.cha_data_gen(cpi, fn);
 
-            System.Console.WriteLine("Inside UploadTeensy:");
+            // copy file to working directory for Arduino
+            string dst = @"C:\GenericHearingAid\" + fn;
+            File.Copy(fn,dst,true);
+
+            Console.WriteLine("Inside UploadTeensy:");
 
             int* cpsiz;
             for (int i = 0; i < 15; i++)
