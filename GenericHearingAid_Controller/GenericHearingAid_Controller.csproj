@@ -8,8 +8,8 @@
     <ProjectGuid>{8893E800-1533-4D42-B565-293155261DB1}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MHA</RootNamespace>
-    <AssemblyName>MHA</AssemblyName>
+    <RootNamespace>GenericHearingAid_Controller</RootNamespace>
+    <AssemblyName>GenericHearingAid_Controller</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -84,6 +84,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -13,7 +13,7 @@ using System.IO;
 using System.Xml.Serialization;
 using System.Runtime.InteropServices;
 
-namespace MHA
+namespace GenericHearingAid_Controller
 {
     public partial class Form1 : Form
     {         

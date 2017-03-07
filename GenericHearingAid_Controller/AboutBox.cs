@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace MHA
+namespace GenericHearingAid_Controller
 {
     partial class AboutBox : Form
     {

@@ -7,7 +7,7 @@ using System.IO;
 
 // Wrapper for chapro.dll
 
-namespace MHA
+namespace GenericHearingAid_Controller
 {
     public unsafe class chapro
     {
