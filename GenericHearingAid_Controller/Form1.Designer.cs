@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.Uploadbutton = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -199,7 +200,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 24);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -219,7 +220,7 @@
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer2.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
@@ -262,7 +263,7 @@
             // txtChunkSize
             // 
             this.txtChunkSize.Location = new System.Drawing.Point(132, 117);
-            this.txtChunkSize.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtChunkSize.Margin = new System.Windows.Forms.Padding(2);
             this.txtChunkSize.Name = "txtChunkSize";
             this.txtChunkSize.Size = new System.Drawing.Size(41, 20);
             this.txtChunkSize.TabIndex = 14;
@@ -318,7 +319,7 @@
             // txtMaxdB
             // 
             this.txtMaxdB.Location = new System.Drawing.Point(132, 93);
-            this.txtMaxdB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtMaxdB.Margin = new System.Windows.Forms.Padding(2);
             this.txtMaxdB.Name = "txtMaxdB";
             this.txtMaxdB.Size = new System.Drawing.Size(41, 20);
             this.txtMaxdB.TabIndex = 9;
@@ -336,7 +337,7 @@
             // numUDchannels
             // 
             this.numUDchannels.Location = new System.Drawing.Point(132, 16);
-            this.numUDchannels.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numUDchannels.Margin = new System.Windows.Forms.Padding(2);
             this.numUDchannels.Name = "numUDchannels";
             this.numUDchannels.Size = new System.Drawing.Size(39, 20);
             this.numUDchannels.TabIndex = 7;
@@ -354,7 +355,7 @@
             // txtRelease
             // 
             this.txtRelease.Location = new System.Drawing.Point(132, 67);
-            this.txtRelease.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtRelease.Margin = new System.Windows.Forms.Padding(2);
             this.txtRelease.Name = "txtRelease";
             this.txtRelease.Size = new System.Drawing.Size(41, 20);
             this.txtRelease.TabIndex = 5;
@@ -372,7 +373,7 @@
             // txtAttack
             // 
             this.txtAttack.Location = new System.Drawing.Point(132, 43);
-            this.txtAttack.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtAttack.Margin = new System.Windows.Forms.Padding(2);
             this.txtAttack.Name = "txtAttack";
             this.txtAttack.Size = new System.Drawing.Size(41, 20);
             this.txtAttack.TabIndex = 3;
@@ -402,7 +403,7 @@
             this.CR,
             this.Bolt});
             this.dGV.Location = new System.Drawing.Point(2, -1);
-            this.dGV.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dGV.Margin = new System.Windows.Forms.Padding(2);
             this.dGV.Name = "dGV";
             this.dGV.RowTemplate.Height = 24;
             this.dGV.Size = new System.Drawing.Size(514, 307);
@@ -437,7 +438,7 @@
             // 
             this.zedGC.Dock = System.Windows.Forms.DockStyle.Fill;
             this.zedGC.Location = new System.Drawing.Point(0, 0);
-            this.zedGC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.zedGC.Margin = new System.Windows.Forms.Padding(4);
             this.zedGC.Name = "zedGC";
             this.zedGC.ScrollGrace = 0;
             this.zedGC.ScrollMaxX = 0;
@@ -458,6 +459,7 @@
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Generic Hearing Aid Controller";

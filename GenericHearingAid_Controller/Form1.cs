@@ -46,21 +46,42 @@ namespace GenericHearingAid_Controller
         {
             if (applyValues) // read UI
             {
-                int n = dGV.Rows.Count-1;
-                dsl.nchannel = n;
-                for (int i = 0; i < dGV.Rows.Count - 1; i++)
+                if (dGV.Rows.Count - 1 > numUDchannels.Value) // remove rows
                 {
-                    dsl.cross_freq[i] = double.Parse(dGV.Rows[i].Cells["CrossFrequency"].Value.ToString());
-                    dsl.tk[i] = double.Parse(dGV.Rows[i].Cells["TK"].Value.ToString());
-                    dsl.tkgain[i] = double.Parse(dGV.Rows[i].Cells["TKgain"].Value.ToString());
-                    dsl.cr[i] = double.Parse(dGV.Rows[i].Cells["CR"].Value.ToString());
-                    dsl.bolt[i] = double.Parse(dGV.Rows[i].Cells["Bolt"].Value.ToString());
+                    int n1 = (int)numUDchannels.Value;
+                    int n2 = dGV.Rows.Count - 1; 
+                    for (int i = n2; i > n1; i--)
+                    {
+                        dGV.Rows.RemoveAt(i-1);
+                        dGV.Rows[i-2].Cells["CrossFrequency"].Value = 0; 
+                        
+                        dsl.cross_freq[i - 2] = 0;
+                        dsl.tk[i-1] = 0;
+                        dsl.tkgain[i-1] = 0;
+                        dsl.cr[i-1] = 0;
+                        dsl.bolt[i-1] = 0;
+
+                    }
+                    
                 }
-                numUDchannels.Value = dsl.nchannel;
-                dsl.attack = double.Parse(txtAttack.Text);
-                dsl.release = double.Parse(txtRelease.Text);
-                dsl.maxdB = double.Parse(txtMaxdB.Text);
-                cs = int.Parse(txtChunkSize.Text);
+                int n = dGV.Rows.Count - 1;
+
+                    dsl.nchannel = n;
+                    for (int i = 0; i < dGV.Rows.Count - 1; i++)
+                    {
+                        dsl.cross_freq[i] = double.Parse(dGV.Rows[i].Cells["CrossFrequency"].Value.ToString());
+                        dsl.tk[i] = double.Parse(dGV.Rows[i].Cells["TK"].Value.ToString());
+                        dsl.tkgain[i] = double.Parse(dGV.Rows[i].Cells["TKgain"].Value.ToString());
+                        dsl.cr[i] = double.Parse(dGV.Rows[i].Cells["CR"].Value.ToString());
+                        dsl.bolt[i] = double.Parse(dGV.Rows[i].Cells["Bolt"].Value.ToString());
+                    }
+                    numUDchannels.Value = dsl.nchannel;
+                    dsl.attack = double.Parse(txtAttack.Text);
+                    dsl.release = double.Parse(txtRelease.Text);
+                    dsl.maxdB = double.Parse(txtMaxdB.Text);
+                    cs = int.Parse(txtChunkSize.Text);
+                
+                
                 toolStripStatusLabel1.Text = "Update complete";
             }
             else // update UI
@@ -491,12 +512,12 @@ namespace GenericHearingAid_Controller
 
 
             // generate C code from prepared data
-            string fn = "cha_ff_data128.h";
+            string fn = @"C:\GenericHearingAid\cha_ff_data128.h";
             chapro.cha_data_gen(cpi, fn);
 
             // copy file to working directory for Arduino
-            string dst = @"C:\GenericHearingAid\" + fn;
-            File.Copy(fn,dst,true);
+            // string dst = @"C:\GenericHearingAid\" + fn;
+            // File.Copy(fn,dst,true);
 
             Console.WriteLine("Inside UploadTeensy:");
 
@@ -507,7 +528,7 @@ namespace GenericHearingAid_Controller
                 System.Console.WriteLine("i = " + i + " : size = " + cpsiz[i]);
             }
 
-                toolStripStatusLabel1.Text = "Uploading to board... ";
+                toolStripStatusLabel1.Text = "Wrote header file " + fn;
         }
 
         private void Updatebutton_Click(object sender, EventArgs e)

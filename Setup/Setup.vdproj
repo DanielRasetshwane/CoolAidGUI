@@ -15,25 +15,49 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_14AFCD313CDAC2C32067994F9E8D557A"
-        "OwnerKey" = "8:_E0012899C0244DB0A04988A92B008ED5"
+        "MsmKey" = "8:_1922085C08B640E9A72B1BB0F74C102D"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_312EBB1B76F03E5E5207B44F41B6850C"
-        "OwnerKey" = "8:_C73EDDF47BE74438A08136B9757131C5"
+        "MsmKey" = "8:_2447A1D1A4FE9293E145C02247195A4A"
+        "OwnerKey" = "8:_3506D1D3BD7647A7958CB8007261A3C7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_312EBB1B76F03E5E5207B44F41B6850C"
-        "OwnerKey" = "8:_F85A86331F65E554AB5DF9A98E1FE28E"
+        "MsmKey" = "8:_2755D38A84C028CFCEA4D90AA2100C7E"
+        "OwnerKey" = "8:_1922085C08B640E9A72B1BB0F74C102D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_662845106AE34F708C6EB3638BE4AE9D"
+        "MsmKey" = "8:_2755D38A84C028CFCEA4D90AA2100C7E"
+        "OwnerKey" = "8:_2447A1D1A4FE9293E145C02247195A4A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3506D1D3BD7647A7958CB8007261A3C7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_640E2B781EF54169A839410D485FF7E4"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A321FD6B18ED47129B4B1A2B46CFCBB0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B26139DF481549F1A917BCEDD5A5724A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -45,20 +69,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_C73EDDF47BE74438A08136B9757131C5"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D3582624857A472E91EDF39B4AA1EE4B"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_E0012899C0244DB0A04988A92B008ED5"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_BD967D0F52A1C01D7DA7D6B780674310"
+        "OwnerKey" = "8:_3506D1D3BD7647A7958CB8007261A3C7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -69,56 +81,50 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_E535B8C1B0F84E6BAD4FA91985737AE7"
+        "MsmKey" = "8:_F6B313EBB7CD49BB8057FF1E36667D45"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_F85A86331F65E554AB5DF9A98E1FE28E"
-        "OwnerKey" = "8:_E0012899C0244DB0A04988A92B008ED5"
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_1922085C08B640E9A72B1BB0F74C102D"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_312EBB1B76F03E5E5207B44F41B6850C"
+        "OwnerKey" = "8:_3506D1D3BD7647A7958CB8007261A3C7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D3582624857A472E91EDF39B4AA1EE4B"
+        "OwnerKey" = "8:_BD967D0F52A1C01D7DA7D6B780674310"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E535B8C1B0F84E6BAD4FA91985737AE7"
+        "OwnerKey" = "8:_2447A1D1A4FE9293E145C02247195A4A"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E0012899C0244DB0A04988A92B008ED5"
+        "OwnerKey" = "8:_F6B313EBB7CD49BB8057FF1E36667D45"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_14AFCD313CDAC2C32067994F9E8D557A"
+        "OwnerKey" = "8:_A321FD6B18ED47129B4B1A2B46CFCBB0"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_F85A86331F65E554AB5DF9A98E1FE28E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C73EDDF47BE74438A08136B9757131C5"
+        "OwnerKey" = "8:_2755D38A84C028CFCEA4D90AA2100C7E"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -139,6 +145,27 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.3.5"
+                    {
+                    "Name" = "8:.NET Framework 3.5"
+                    "ProductCode" = "8:Microsoft.Net.Framework.3.5"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -155,6 +182,27 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.3.5"
+                    {
+                    "Name" = "8:.NET Framework 3.5"
+                    "ProductCode" = "8:Microsoft.Net.Framework.3.5"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -184,20 +232,51 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_14AFCD313CDAC2C32067994F9E8D557A"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1922085C08B640E9A72B1BB0F74C102D"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:ZedGraph, Version=5.1.2.878, Culture=neutral, PublicKeyToken=02a83cbd123fcd60, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:csmatio, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_14AFCD313CDAC2C32067994F9E8D557A"
+                    "_1922085C08B640E9A72B1BB0F74C102D"
                     {
-                    "Name" = "8:ZedGraph.DLL"
+                    "Name" = "8:csmatio.dll"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:ZedGraph.DLL"
+            "SourcePath" = "8:..\\GenericHearingAid_Controller\\bin\\Debug\\csmatio.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_FE3DBFF577AF4706B025BE9124060CA8"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2447A1D1A4FE9293E145C02247195A4A"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:csmatio, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_2447A1D1A4FE9293E145C02247195A4A"
+                    {
+                    "Name" = "8:csmatio.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:csmatio.DLL"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_FE3DBFF577AF4706B025BE9124060CA8"
@@ -215,14 +294,14 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_312EBB1B76F03E5E5207B44F41B6850C"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2755D38A84C028CFCEA4D90AA2100C7E"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:zlib.net, Version=1.1.0.0, Culture=neutral, PublicKeyToken=8c48856268042b4c, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_312EBB1B76F03E5E5207B44F41B6850C"
+                    "_2755D38A84C028CFCEA4D90AA2100C7E"
                     {
                     "Name" = "8:zlib.net.DLL"
                     "Attributes" = "3:512"
@@ -246,9 +325,91 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_662845106AE34F708C6EB3638BE4AE9D"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3506D1D3BD7647A7958CB8007261A3C7"
             {
-            "SourcePath" = "8:..\\MHA\\bin\\Debug\\chapro.dll"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:GenericHearingAid_Controller, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_3506D1D3BD7647A7958CB8007261A3C7"
+                    {
+                    "Name" = "8:GenericHearingAid_Controller.exe"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\GenericHearingAid_Controller\\bin\\Debug\\GenericHearingAid_Controller.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_FE3DBFF577AF4706B025BE9124060CA8"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_640E2B781EF54169A839410D485FF7E4"
+            {
+            "SourcePath" = "8:..\\GenericHearingAid_Controller\\GHA_controller.ico"
+            "TargetName" = "8:GHA_controller.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_FE3DBFF577AF4706B025BE9124060CA8"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A321FD6B18ED47129B4B1A2B46CFCBB0"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:ZedGraph, Version=5.1.2.878, Culture=neutral, PublicKeyToken=02a83cbd123fcd60, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_A321FD6B18ED47129B4B1A2B46CFCBB0"
+                    {
+                    "Name" = "8:ZedGraph.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\GenericHearingAid_Controller\\bin\\Debug\\ZedGraph.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_FE3DBFF577AF4706B025BE9124060CA8"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B26139DF481549F1A917BCEDD5A5724A"
+            {
+            "SourcePath" = "8:..\\GenericHearingAid_Controller\\bin\\Debug\\chapro.dll"
             "TargetName" = "8:chapro.dll"
             "Tag" = "8:"
             "Folder" = "8:_FE3DBFF577AF4706B025BE9124060CA8"
@@ -266,144 +427,20 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C73EDDF47BE74438A08136B9757131C5"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:csmatio, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_C73EDDF47BE74438A08136B9757131C5"
-                    {
-                    "Name" = "8:csmatio.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:..\\MHA\\bin\\Debug\\csmatio.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_FE3DBFF577AF4706B025BE9124060CA8"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D3582624857A472E91EDF39B4AA1EE4B"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:zlib.net, Version=1.1.0.0, Culture=neutral, PublicKeyToken=8c48856268042b4c, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_D3582624857A472E91EDF39B4AA1EE4B"
-                    {
-                    "Name" = "8:zlib.net.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:..\\MHA\\bin\\Debug\\zlib.net.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_FE3DBFF577AF4706B025BE9124060CA8"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E0012899C0244DB0A04988A92B008ED5"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MHA, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
-                "ScatterAssemblies"
-                {
-                    "_E0012899C0244DB0A04988A92B008ED5"
-                    {
-                    "Name" = "8:MHA.exe"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:..\\MHA\\bin\\Debug\\MHA.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_FE3DBFF577AF4706B025BE9124060CA8"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E535B8C1B0F84E6BAD4FA91985737AE7"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BD967D0F52A1C01D7DA7D6B780674310"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:ZedGraph, Version=5.1.2.878, Culture=neutral, PublicKeyToken=02a83cbd123fcd60, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_E535B8C1B0F84E6BAD4FA91985737AE7"
+                    "_BD967D0F52A1C01D7DA7D6B780674310"
                     {
-                    "Name" = "8:ZedGraph.dll"
+                    "Name" = "8:ZedGraph.DLL"
                     "Attributes" = "3:512"
                     }
                 }
-            "SourcePath" = "8:..\\MHA\\bin\\Debug\\ZedGraph.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_FE3DBFF577AF4706B025BE9124060CA8"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F85A86331F65E554AB5DF9A98E1FE28E"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:csmatio, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_F85A86331F65E554AB5DF9A98E1FE28E"
-                    {
-                    "Name" = "8:csmatio.DLL"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:csmatio.DLL"
+            "SourcePath" = "8:ZedGraph.DLL"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_FE3DBFF577AF4706B025BE9124060CA8"
@@ -419,6 +456,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F6B313EBB7CD49BB8057FF1E36667D45"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:zlib.net, Version=1.1.0.0, Culture=neutral, PublicKeyToken=8c48856268042b4c, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_F6B313EBB7CD49BB8057FF1E36667D45"
+                    {
+                    "Name" = "8:zlib.net.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\GenericHearingAid_Controller\\bin\\Debug\\zlib.net.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_FE3DBFF577AF4706B025BE9124060CA8"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
         }
@@ -476,9 +544,9 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Setup"
+        "ProductName" = "8:BTNRH Generic Hearing Aid Controller"
         "ProductCode" = "8:{268493B0-0259-4303-B1CC-F4E7265747E8}"
-        "PackageCode" = "8:{3619668F-B482-4D20-ACF3-89D6490B6C52}"
+        "PackageCode" = "8:{178968CB-4816-4CEE-BCF6-43DB808DA6FD}"
         "UpgradeCode" = "8:{94B55159-9D50-4F27-A918-5057214FC02B}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
@@ -488,13 +556,13 @@
         "Manufacturer" = "8:BTNRH"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:Setup"
+        "Title" = "8:GenericHearingAid_Controller"
         "Subject" = "8:"
         "ARPCONTACT" = "8:BTNRH"
         "Keywords" = "8:"
         "ARPCOMMENTS" = "8:"
         "ARPURLINFOABOUT" = "8:"
-        "ARPPRODUCTICON" = "8:"
+        "ARPPRODUCTICON" = "8:_640E2B781EF54169A839410D485FF7E4"
         "ARPIconIndex" = "3:0"
         "SearchPath" = "8:"
         "UseSystemSearchPath" = "11:TRUE"
@@ -597,32 +665,32 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_BFF278E1C88E4C8EBABDA46FCA146770"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_7050700284314D7E9453B292D97C53C7"
             {
-            "Name" = "8:MHA"
+            "Name" = "8:Generic Hearing Aid Controller"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_E0012899C0244DB0A04988A92B008ED5"
+            "Target" = "8:_3506D1D3BD7647A7958CB8007261A3C7"
             "Folder" = "8:_BD21C898894D48F3824AC65D787044E7"
             "WorkingFolder" = "8:_FE3DBFF577AF4706B025BE9124060CA8"
-            "Icon" = "8:"
+            "Icon" = "8:_640E2B781EF54169A839410D485FF7E4"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_CC3EAFB1A65349DDB29A1CA82493431F"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_BA4DF7E62E444782B34C81FDFEFEAADB"
             {
-            "Name" = "8:MHA"
+            "Name" = "8:Generic Hearing Aid Controller"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_E0012899C0244DB0A04988A92B008ED5"
+            "Target" = "8:_3506D1D3BD7647A7958CB8007261A3C7"
             "Folder" = "8:_27176D1FB8334372800632A25C389A5F"
             "WorkingFolder" = "8:_FE3DBFF577AF4706B025BE9124060CA8"
-            "Icon" = "8:"
+            "Icon" = "8:_640E2B781EF54169A839410D485FF7E4"
             "Feature" = "8:"
             }
         }

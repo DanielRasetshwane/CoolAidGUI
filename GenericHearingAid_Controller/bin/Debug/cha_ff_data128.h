@@ -10,8 +10,8 @@ static CHA_DATA p01[      16] = { // _ivar
                128,       128,         8
 };
 static double   p02[      16] = { // _dvar
-            0.980191946,    0.998517215,          24000,            119,              0,
-                    105,             10,            105,    0.980191946,    0.998517215
+            0.999932647,    0.999950528,          24000,            119,              0,
+                    105,             10,            105,    0.999932647,    0.999950528
 };
 static CHA_DATA p03[    2048] = {         0};
 static CHA_DATA p04[    2064] = {
@@ -278,16 +278,16 @@ static CHA_DATA p05[     258] = {         0};
 static CHA_DATA p06[     258] = {         0};
 static CHA_DATA p07[    2048] = {         0};
 static CHA_DATA p08[       8] = {
-        0x4200CCCD,0x41D40000,0x41D5999A,0x41D5999A,0x41EE6666,0x42066666,0x42093333,0x4202CCCD
+        0x41A00000,0x41D40000,0x41D5999A,0x41D5999A,0x41EE6666,0x42066666,0x42093333,0x4202CCCD
 };
 static CHA_DATA p09[       8] = {
-        0x3F333333,0x3F666666,0x3F800000,0x3F8CCCCD,0x3F99999A,0x3FB33333,0x3FCCCCCD,0x3FD9999A
+        0x3F800000,0x3F800000,0x3F800000,0x3F800000,0x3F800000,0x3F800000,0x3F800000,0x3F800000
 };
 static CHA_DATA p10[       8] = {
-        0xC15981D8,0xC184BA2A,0xC0730F28,0x40D3C361,0x4134E148,0x41BDBF14,0x420F6F35,0x42158DD3
+        0x41A00000,0x41A00000,0x41A00000,0x41A00000,0x41A00000,0x41A00000,0x41A00000,0x41A00000
 };
 static CHA_DATA p11[       8] = {
-        0x42825852,0x428F37DC,0x42ADCDED,0x42B9AAA6,0x42C46666,0x42CE999A,0x42CBCCCD,0x42C7999A
+        0x429D888D,0x42B06666,0x42B56666,0x42B9AAA6,0x42C46666,0x42CE999A,0x42CBCCCD,0x42C7999A
 };
 static CHA_DATA p12[       8] = {         0};
 static CHA_DATA p13[     128] = {         0};
