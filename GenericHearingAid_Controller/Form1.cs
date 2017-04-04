@@ -531,6 +531,161 @@ namespace GenericHearingAid_Controller
                 toolStripStatusLabel1.Text = "Wrote header file " + fn;
         }
 
+        private void UploadTeensy_simple()
+        {
+            chapro.CHA_WDRC gha = new chapro.CHA_WDRC();
+            gha.attack = 1;
+            gha.release = 50;
+            gha.fs = 24000;
+            gha.maxdB = 119;
+            gha.tkgain = 0;
+            gha.tk = 105;
+            gha.cr = 10;
+            gha.bolt = 105;
+
+            string[] lines = new string[30];
+
+            lines = GHA_Constants_base();
+
+            // Populate DSL struct
+            int k;
+            string str0;
+
+            // attack time
+            k = 5;
+            lines[k] = "  " + dsl.attack + ",  " + Modify_Line(lines[k]);
+
+            // release time
+            k = 6;
+            lines[k] = "  " + dsl.release + ",  " + Modify_Line(lines[k]);
+
+            // TKgain
+            k = 13;
+            str0 = "  {";
+            for (int i = 0; i < 7; i++)
+            {
+                str0 = str0 + dsl.tkgain[i] + "f, ";
+            }
+            str0 = str0 + dsl.tkgain[7] + "f},   ";
+            lines[k] = str0 + Modify_Line(lines[k]);
+
+            // CR 
+            k = 14;
+            str0 = "  {";
+            for (int i = 0; i < 7; i++)
+            {
+                str0 = str0 + dsl.cr[i] + "f, ";
+            }
+            str0 = str0 + dsl.cr[7] + "f},   ";
+            lines[k] = str0 + Modify_Line(lines[k]);
+
+            // TK
+            k = 15;
+            str0 = "  {";
+            for (int i=0; i < 7; i++)
+            {
+                str0 = str0 + dsl.tk[i] + ", ";
+            }
+            str0 = str0 + dsl.tk[7] + "},   ";
+            lines[k] = str0 + Modify_Line(lines[k]);
+
+            // BOLT
+            k = 16;
+            str0 = "  {";
+            for (int i = 0; i < 7; i++)
+            {
+                str0 = str0 + dsl.bolt[i] + "f, ";
+            }
+            str0 = str0 + dsl.bolt[7] + "f},   ";
+            lines[k] = str0 + Modify_Line(lines[k]);
+
+
+            // Populate GHA struct
+            // attack time
+            k = 21;
+            lines[k] = "  " + gha.attack + "f,  " + Modify_Line(lines[k]);
+
+            // relase time
+            k = 22;
+            lines[k] = "  " + gha.release + "f,  " + Modify_Line(lines[k]);
+
+            // fs
+            k = 23;
+            lines[k] = "  " + gha.fs + "f,  " + Modify_Line(lines[k]);
+
+            // max dB
+            k = 24;
+            lines[k] = "  " + gha.maxdB + "f,  " + Modify_Line(lines[k]);
+
+
+            // generate C code from prepared data
+            string fn = @"C:\WDRC_8BandComp_wExp\GHA_Constants1.h";
+
+            try
+            {
+                System.IO.File.WriteAllLines(fn, lines);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            toolStripStatusLabel1.Text = "Wrote header file " + fn;
+
+        }
+
+        private string[] GHA_Constants_base()
+        {
+            string[] base_str = new string[32] { " ", 
+                "#include <AudioEffectCompWDRC_F32.h>  //for CHA_DSL and CHA_WDRC data types",
+                " ",
+                "// WEA Tweaked.  Sounds OK to his ears",
+                "static BTNRH_WDRC::CHA_DSL2 dsl = {",
+                "  5,  // attack (ms)",
+                "  300,  // release (ms)",
+                "  115,  //maxdB.  calibration.  dB SPL for input signal at 0 dBFS.  Needs to be tailored to mic, spkrs, and mic gain.",
+                "  0,    // 0=left, 1=right...ignored",
+                "  8,    //num channels...ignored.  8 is always assumed",
+                "  {317.1666, 502.9734, 797.6319, 1264.9, 2005.9, 3181.1, 5044.7},   // cross frequencies (Hz)",
+                "  {0.57, 0.57, 0.57, 0.57, 0.57, 0.57, 0.57, 0.57},   // compression ratio for low-SPL region (ie, the expander..values should be < 1.0)",
+                "  {45.0, 45.0, 33.0, 32.0, 36.0, 34.0, 36.0, 40.0},   // expansion-end kneepoint",
+                "  {20.f, 20.f, 25.f, 30.f, 30.f, 30.f, 30.f, 30.f},   // compression-start gain",
+                "  {1.5f, 1.5f, 1.5f, 1.5f, 1.5f, 1.5f, 1.5f, 1.5f},   // compression ratio",
+                "  {50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0},   // compression-start kneepoint (input dB SPL)",
+                "  {90.f, 90.f, 90.f, 90.f, 90.f, 91.f, 92.f, 93.f}    // broadband output limiting threshold (comp ratio 10)",
+                "};",
+                " ",    
+                "//from GHA_Demo.c  from amplify()   Used for broad-band limiter.",
+                "BTNRH_WDRC::CHA_WDRC2 gha = {",
+                "5.f, // attack time (ms)",
+                "  300.f,    // release time (ms)",
+                "  24000.f,  // sampling rate (Hz)...ignored.  Set globally in the main program.",
+                "  115.f,    // maxdB.  calibration.  dB SPL for signal at 0dBFS.  Needs to be tailored to mic, spkrs, and mic gain.",
+                "  1.0,      // compression ratio for lowest-SPL region (ie, the expansion region) (should be < 1.0.  set to 1.0 for linear)",
+                "  0.0,      // kneepoint of end of expansion region (set very low to defeat the expansion)",
+                "  0.f,      // compression-start gain....set to zero for pure limitter",
+                "  115.f,    // compression-start kneepoint...set to some high value to make it not relevant",
+                "  1.f,      // compression ratio...set to 1.0 to make linear (to defeat)",
+                "  98.0     // broadband output limiting threshold...hardwired to compression ratio of 10.0",
+                "};"
+            };
+             
+
+            return base_str;
+        }
+
+        private string Modify_Line(string in_str)
+        {
+            string out_str;
+            int i, j;
+
+            i = in_str.IndexOf("//");
+            j = in_str.Length;
+            out_str = in_str.Substring(i, j - i);
+
+            return out_str;
+        }
+
         private void Updatebutton_Click(object sender, EventArgs e)
         {
             UpdateUI(true);
@@ -552,7 +707,8 @@ namespace GenericHearingAid_Controller
 
         private void Uploadbutton_Click(object sender, EventArgs e)
         {
-            UploadTeensy();
+            //UploadTeensy();
+            UploadTeensy_simple();
 
             //chapro.CHA_WDRC gha = new chapro.CHA_WDRC();
             //gha.attack = 1;
@@ -585,7 +741,8 @@ namespace GenericHearingAid_Controller
 
         private void UploadToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            UploadTeensy();
+            //UploadTeensy();
+            UploadTeensy_simple();
         }
 
         private void loadDSLPrescriptionToolStripMenuItem_Click(object sender, EventArgs e)
