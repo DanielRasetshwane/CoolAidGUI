@@ -156,8 +156,8 @@ namespace GenericHearingAid_Controller
         private void LoadDefaultSettings()
         {
             dsl.attack = 5;
-            dsl.release = 50;
-            dsl.maxdB = 119;
+            dsl.release = 300;
+            dsl.maxdB = 115;
             dsl.ear = 0;
             dsl.nchannel = 8;
             
@@ -171,44 +171,44 @@ namespace GenericHearingAid_Controller
             dsl.cross_freq[6] = 5044.7;
 
             dsl.tkgain = new double[chapro.DSL_MXCH];
-            dsl.tkgain[0] = -13.5942;
-            dsl.tkgain[1] = -16.5909;
-            dsl.tkgain[2] = -3.7978;
-            dsl.tkgain[3] = 6.6176;
-            dsl.tkgain[4] = 11.3050;
-            dsl.tkgain[5] = 23.7183;
-            dsl.tkgain[6] = 35.8586;
-            dsl.tkgain[7] = 37.3885;
+            dsl.tkgain[0] = 20;
+            dsl.tkgain[1] = 20;
+            dsl.tkgain[2] = 25;
+            dsl.tkgain[3] = 30;
+            dsl.tkgain[4] = 30;
+            dsl.tkgain[5] = 30;
+            dsl.tkgain[6] = 30;
+            dsl.tkgain[7] = 30;
 
             dsl.cr = new double[chapro.DSL_MXCH];
-            dsl.cr[0] = 0.7;
-            dsl.cr[1] = 0.9;
-            dsl.cr[2] = 1;
-            dsl.cr[3] = 1.1;
-            dsl.cr[4] = 1.2;
-            dsl.cr[5] = 1.4;
-            dsl.cr[6] = 1.6;
-            dsl.cr[7] = 1.7;
+            dsl.cr[0] = 1.5;
+            dsl.cr[1] = 1.5;
+            dsl.cr[2] = 1.5;
+            dsl.cr[3] = 1.5;
+            dsl.cr[4] = 1.5;
+            dsl.cr[5] = 1.5;
+            dsl.cr[6] = 1.5;
+            dsl.cr[7] = 1.5;
 
             dsl.tk = new double[chapro.DSL_MXCH];
-            dsl.tk[0] = 32.2;
-            dsl.tk[1] = 26.5;
-            dsl.tk[2] = 26.7;
-            dsl.tk[3] = 26.7;
-            dsl.tk[4] = 29.8;
-            dsl.tk[5] = 33.6;
-            dsl.tk[6] = 34.3;
-            dsl.tk[7] = 32.7;
+            dsl.tk[0] = 40;
+            dsl.tk[1] = 40;
+            dsl.tk[2] = 40;
+            dsl.tk[3] = 40;
+            dsl.tk[4] = 40;
+            dsl.tk[5] = 40;
+            dsl.tk[6] = 40;
+            dsl.tk[7] = 40;
 
             dsl.bolt = new double[chapro.DSL_MXCH];
-            dsl.bolt[0] = 78.7667;
-            dsl.bolt[1] = 88.2;
-            dsl.bolt[2] = 90.7;
-            dsl.bolt[3] = 92.8333;
-            dsl.bolt[4] = 98.2;
-            dsl.bolt[5] = 103.3;
-            dsl.bolt[6] = 101.9;
-            dsl.bolt[7] = 99.8;
+            dsl.bolt[0] = 90;
+            dsl.bolt[1] = 90;
+            dsl.bolt[2] = 90;
+            dsl.bolt[3] = 90;
+            dsl.bolt[4] = 90;
+            dsl.bolt[5] = 90;
+            dsl.bolt[6] = 90;
+            dsl.bolt[7] = 90;
         }
 
         
@@ -302,11 +302,14 @@ namespace GenericHearingAid_Controller
         private void PlotData()
         {
             //DEBUG
-            System.Console.WriteLine("Storage size for int : " + sizeof(int));
-            System.Console.WriteLine("Storage size for long : " + sizeof(long));
-            System.Console.WriteLine("Storage size for short : " + sizeof(short));
-            System.Console.WriteLine("Storage size for double : " + sizeof(double));
-            System.Console.WriteLine("Storage size for float : " + sizeof(float));
+            float a = 10.0f;
+            float b = 10f;
+
+            System.Console.WriteLine("a = " + a);
+            System.Console.WriteLine("b = " + b);
+
+            System.Console.WriteLine("a/3 = " + (a/3));
+            System.Console.WriteLine("b/3 = " + (b/3));
             // end DEBUG
                 
             plotdata = new double[4][];
@@ -564,9 +567,9 @@ namespace GenericHearingAid_Controller
             str0 = "  {";
             for (int i = 0; i < 7; i++)
             {
-                str0 = str0 + dsl.tkgain[i] + "f, ";
+                str0 = str0 + String.Format("{0:N1}f,  ", dsl.tkgain[i]);
             }
-            str0 = str0 + dsl.tkgain[7] + "f},   ";
+            str0 = str0 + String.Format("{0:N1}f", dsl.tkgain[7]) + "},   ";
             lines[k] = str0 + Modify_Line(lines[k]);
 
             // CR 
@@ -574,19 +577,19 @@ namespace GenericHearingAid_Controller
             str0 = "  {";
             for (int i = 0; i < 7; i++)
             {
-                str0 = str0 + dsl.cr[i] + "f, ";
+                str0 = str0 + String.Format("{0:N1}f,  ", dsl.cr[i]);
             }
-            str0 = str0 + dsl.cr[7] + "f},   ";
+            str0 = str0 + String.Format("{0:N1}f", dsl.cr[7]) + "},   ";
             lines[k] = str0 + Modify_Line(lines[k]);
 
             // TK
             k = 15;
             str0 = "  {";
-            for (int i=0; i < 7; i++)
+            for (int i = 0; i < 7; i++)
             {
-                str0 = str0 + dsl.tk[i] + ", ";
+                str0 = str0 + String.Format("{0:N1}f,  ", dsl.tk[i]);
             }
-            str0 = str0 + dsl.tk[7] + "},   ";
+            str0 = str0 + String.Format("{0:N1}f", dsl.tk[7]) + "},   ";
             lines[k] = str0 + Modify_Line(lines[k]);
 
             // BOLT
@@ -594,32 +597,32 @@ namespace GenericHearingAid_Controller
             str0 = "  {";
             for (int i = 0; i < 7; i++)
             {
-                str0 = str0 + dsl.bolt[i] + "f, ";
+                str0 = str0 + String.Format("{0:N1}f,  ",dsl.bolt[i]);
             }
-            str0 = str0 + dsl.bolt[7] + "f},   ";
+            str0 = str0 + String.Format("{0:N1}f", dsl.bolt[7]) + "},   ";
             lines[k] = str0 + Modify_Line(lines[k]);
 
 
             // Populate GHA struct
             // attack time
             k = 21;
-            lines[k] = "  " + gha.attack + "f,  " + Modify_Line(lines[k]);
+            lines[k] = String.Format("  {0:N1}f,  {1}", gha.attack,  Modify_Line(lines[k]));
 
             // relase time
             k = 22;
-            lines[k] = "  " + gha.release + "f,  " + Modify_Line(lines[k]);
+            lines[k] = String.Format("  {0:N1}f,  {1}", gha.release, Modify_Line(lines[k]));
 
             // fs
-            k = 23;
-            lines[k] = "  " + gha.fs + "f,  " + Modify_Line(lines[k]);
+            //k = 23;
+            //lines[k] = String.Format("  {0:N1}f,  {1}", gha.fs, Modify_Line(lines[k]));
 
             // max dB
             k = 24;
-            lines[k] = "  " + gha.maxdB + "f,  " + Modify_Line(lines[k]);
+            lines[k] = String.Format("  {0:N1}f,  {1}", gha.maxdB, Modify_Line(lines[k]));
 
 
             // generate C code from prepared data
-            string fn = @"C:\WDRC_8BandComp_wExp\GHA_Constants1.h";
+            string fn = @"C:\WDRC_8BandComp_wExp\GHA_Constants.h";
 
             try
             {

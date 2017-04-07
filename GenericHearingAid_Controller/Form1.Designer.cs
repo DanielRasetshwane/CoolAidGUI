@@ -61,12 +61,12 @@
             this.txtAttack = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dGV = new System.Windows.Forms.DataGridView();
+            this.zedGC = new ZedGraph.ZedGraphControl();
             this.CrossFrequency = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TK = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TKgain = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Bolt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.zedGC = new ZedGraph.ZedGraphControl();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -409,31 +409,6 @@
             this.dGV.Size = new System.Drawing.Size(514, 307);
             this.dGV.TabIndex = 1;
             // 
-            // CrossFrequency
-            // 
-            this.CrossFrequency.HeaderText = "Crossover Frequency (Hz)";
-            this.CrossFrequency.Name = "CrossFrequency";
-            // 
-            // TK
-            // 
-            this.TK.HeaderText = "Knee point";
-            this.TK.Name = "TK";
-            // 
-            // TKgain
-            // 
-            this.TKgain.HeaderText = "Knee point Gain (dB)";
-            this.TKgain.Name = "TKgain";
-            // 
-            // CR
-            // 
-            this.CR.HeaderText = "Compression Ratio";
-            this.CR.Name = "CR";
-            // 
-            // Bolt
-            // 
-            this.Bolt.HeaderText = "BOLT";
-            this.Bolt.Name = "Bolt";
-            // 
             // zedGC
             // 
             this.zedGC.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -449,6 +424,36 @@
             this.zedGC.ScrollMinY2 = 0;
             this.zedGC.Size = new System.Drawing.Size(781, 459);
             this.zedGC.TabIndex = 1;
+            // 
+            // CrossFrequency
+            // 
+            this.CrossFrequency.HeaderText = "Crossover Frequency (Hz)";
+            this.CrossFrequency.Name = "CrossFrequency";
+            this.CrossFrequency.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // TK
+            // 
+            this.TK.HeaderText = "Knee point";
+            this.TK.Name = "TK";
+            this.TK.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // TKgain
+            // 
+            this.TKgain.HeaderText = "Knee point Gain (dB)";
+            this.TKgain.Name = "TKgain";
+            this.TKgain.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // CR
+            // 
+            this.CR.HeaderText = "Compression Ratio";
+            this.CR.Name = "CR";
+            this.CR.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Bolt
+            // 
+            this.Bolt.HeaderText = "BOLT";
+            this.Bolt.Name = "Bolt";
+            this.Bolt.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // Form1
             // 
@@ -507,11 +512,6 @@
         private System.Windows.Forms.NumericUpDown numUDchannels;
         private System.Windows.Forms.Button Plotbutton;
         private System.Windows.Forms.Button Updatebutton;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CrossFrequency;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TK;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TKgain;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CR;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Bolt;
         private System.Windows.Forms.Button Savebutton;
         private System.Windows.Forms.Button Loadbutton;
         private System.Windows.Forms.ToolStripMenuItem updateToolStripMenuItem;
@@ -520,6 +520,11 @@
         private System.Windows.Forms.ToolStripMenuItem loadToolStripMenuItem;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtChunkSize;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CrossFrequency;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TK;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TKgain;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CR;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Bolt;
     }
 }
 
