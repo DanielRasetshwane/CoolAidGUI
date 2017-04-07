@@ -43,7 +43,7 @@ namespace GenericHearingAid_Controller
         }
 
         private void UpdateUI(bool applyValues)
-        {
+        {            
             if (applyValues) // read UI
             {
                 if (dGV.Rows.Count - 1 > numUDchannels.Value) // remove rows
@@ -710,6 +710,12 @@ namespace GenericHearingAid_Controller
 
         private void Uploadbutton_Click(object sender, EventArgs e)
         {
+            UpdateUI(true);
+
+            this.Refresh();
+
+            System.Threading.Thread.Sleep(500);
+
             //UploadTeensy();
             UploadTeensy_simple();
 
